@@ -82,7 +82,14 @@ export default function TaskForm() {
     });
 
     try {
-      const response = await fetch(`${baseUrl}?${queryParams.toString()}`);
+      const response = await fetch(`${baseUrl}?${queryParams.toString()}`, {
+        method: 'GET',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        },
+      });
       if (response.ok) {
         alert('Задача опубликована успешно!');
         setFormData(initialFormData);
